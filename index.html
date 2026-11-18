@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>函数增量</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/settings.css">
+</head>
+<body>
+    <div class="plot-card">
+        <div class="header">
+            <svg class="icon" viewBox="0 0 24 24">
+                <path d="M3 20L9 14L13 18L21 6" stroke-linecap="round" stroke-linejoin="round" />
+                <circle cx="7" cy="17" r="1.5" fill="#1E1E1E" stroke="none" />
+            </svg>
+            <h1 id="titleText">y = x</h1>
+            <button class="settings-entry-btn" id="openSettingsBtn">
+                <svg class="icon-small" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="3" />
+                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33h.01a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51h.01a1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82v.01a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" />
+                </svg>
+                设置
+            </button>
+        </div>
+
+        <div class="status-bar">
+            <div class="stat">
+                <span class="stat-label">
+                    <svg class="icon-small" viewBox="0 0 24 24">
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                    x
+                </span>
+                <span class="stat-value" id="xValue">0</span>
+            </div>
+            <div class="stat">
+                <span class="stat-label">
+                    <svg class="icon-small" viewBox="0 0 24 24">
+                        <path d="M12 5v14M5 12l7 7 7-7" />
+                    </svg>
+                    y
+                </span>
+                <span class="stat-value accent" id="yValue">0</span>
+            </div>
+            <div class="stat hidden" id="kStat">
+                <span class="stat-label">
+                    <svg class="icon-small" viewBox="0 0 24 24">
+                        <path d="M4 7h16M4 12h16M4 17h10" />
+                    </svg>
+                    k
+                </span>
+                <span class="stat-value accent" id="kValue">1</span>
+            </div>
+            <div class="stat hidden" id="bStat">
+                <span class="stat-label">
+                    <svg class="icon-small" viewBox="0 0 24 24">
+                        <path d="M12 5v14M5 12h14" />
+                    </svg>
+                    b
+                </span>
+                <span class="stat-value accent" id="bValue">0</span>
+            </div>
+            <div class="stat">
+                <span class="stat-label">
+                    <svg class="icon-small" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="9" />
+                        <path d="M12 7v5l3 3" />
+                    </svg>
+                    运行时间
+                </span>
+                <span class="stat-value" id="timeValue">0.0s</span>
+            </div>
+        </div>
+
+        <div class="plot-row">
+            <div class="upgrade-column">
+                <div class="upgrade-item" id="kUpgradeItem">
+                    <button class="upgrade-btn" id="upgradeKBtn">
+                        <svg class="icon-small" viewBox="0 0 24 24" style="stroke:#FFFFFF">
+                            <path d="M12 5v14M5 12h14" />
+                        </svg>
+                        增加 k
+                    </button>
+                    <span class="price-text" id="kPriceText">需要 y &gt; 50</span>
+                </div>
+                <div class="upgrade-item hidden" id="bUpgradeItem">
+                    <button class="upgrade-btn" id="upgradeBBtn">
+                        <svg class="icon-small" viewBox="0 0 24 24" style="stroke:#FFFFFF">
+                            <path d="M12 5v14M5 12h14" />
+                        </svg>
+                        增加 b
+                    </button>
+                    <span class="price-text" id="bPriceText">需要 k &gt;= 10</span>
+                </div>
+            </div>
+            <div class="canvas-wrapper">
+                <canvas id="gameCanvas" width="800" height="400"></canvas>
+                <div class="guide" id="guideText"></div>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button class="btn" id="resetBtn">
+                <svg class="icon-small" viewBox="0 0 24 24">
+                    <path d="M4 4v5h5M20 20v-5h-5" />
+                    <path d="M4 9a9 9 0 0 1 14.5-3.5M20 15a9 9 0 0 1-14.5 3.5" />
+                </svg>
+                重置
+            </button>
+            <span class="hint">x 每 10ms 增加 0.01，每 5 秒自动存档</span>
+        </div>
+
+        <div class="settings-overlay hidden" id="settingsOverlay">
+            <div class="settings-header">
+                <h2>设置</h2>
+                <button class="settings-close-btn" id="closeSettingsBtn" aria-label="关闭设置">
+                    <svg class="icon-small" viewBox="0 0 24 24">
+                        <path d="M18 6L6 18M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+            <div class="settings-body" id="settingsBody"></div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/break_eternity.js@2.1.0/dist/break_eternity.min.js"></script>
+    <script src="js/game.js"></script>
+    <script src="js/settings.js"></script>
+</body>
+</html>
