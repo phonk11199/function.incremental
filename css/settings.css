@@ -1,20 +1,17 @@
-/* 设置界面内部样式 */
 .settings-section {
     display: flex;
     flex-direction: column;
     gap: 12px;
-    align-items: center;   /* 改为居中 */
+    align-items: center;
     width: 100%;
 }
-
 .settings-section-title {
     font-size: 0.95rem;
     font-weight: 600;
     color: #1E1E1E;
     margin-bottom: 4px;
-    align-self: flex-start; /* 标题保持左对齐 */
+    align-self: flex-start;
 }
-
 .settings-action-btn {
     background-color: #2F6B4F;
     border: 1px solid #2F6B4F;
@@ -26,36 +23,25 @@
     cursor: pointer;
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 6px;
     white-space: nowrap;
-    width: 160px;          /* 固定宽度 */
-    justify-content: center;
+    width: 160px;
 }
-
 .settings-action-btn.secondary {
     background-color: #FFFFFF;
     border: 1px solid #C0C0C0;
     color: #1E1E1E;
 }
-
-.settings-action-btn:hover {
-    background-color: #245A40;
-}
-.settings-action-btn.secondary:hover {
-    background-color: #F5F5F5;
-}
-
-.settings-action-btn .icon-small {
-    stroke: currentColor;
-}
-
+.settings-action-btn:hover { background-color: #245A40; }
+.settings-action-btn.secondary:hover { background-color: #F5F5F5; }
+.settings-action-btn .icon-small { stroke: currentColor; }
 .settings-divider {
     width: 100%;
     height: 1px;
     background-color: #E0E0E0;
     margin: 8px 0;
 }
-
 .settings-textarea {
     width: 100%;
     min-height: 80px;
@@ -70,11 +56,7 @@
     outline: none;
     word-break: break-all;
 }
-
-.settings-textarea:focus {
-    border-color: #2F6B4F;
-}
-
+.settings-textarea:focus { border-color: #2F6B4F; }
 .settings-hint {
     font-size: 0.8rem;
     color: #888;
@@ -82,7 +64,6 @@
     margin-top: 4px;
     align-self: flex-start;
 }
-
 .settings-result {
     font-size: 0.85rem;
     color: #2F6B4F;
@@ -92,15 +73,12 @@
     transition: opacity 0.2s;
     align-self: flex-start;
 }
+.settings-result.visible { opacity: 1; }
+.settings-result.error { color: #C0392B; }
+.hidden { display: none !important; }
 
-.settings-result.visible {
-    opacity: 1;
-}
-
-.settings-result.error {
-    color: #C0392B;
-}
-
-.hidden {
-    display: none !important;
+/* 针对管理面板输入框的微调 */
+.settings-section input[type="text"],
+.settings-section input[type="number"] {
+    box-sizing: border-box;
 }
